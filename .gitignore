@@ -83,6 +83,10 @@ dmypy.json
 secrets/*
 !secrets/.gitkeep
 
+# Data (download it from Kaggle, see README)
+data/
+!data/.gitkeep
+
 # Mac files
 .DS_Store
 
