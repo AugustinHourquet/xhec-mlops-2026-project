@@ -33,6 +33,8 @@ Traditionally, determining an abalone's age requires:
 
 📥 **Download**: Get the dataset from the [Kaggle page](https://www.kaggle.com/datasets/rodolfomendes/abalone-dataset)
 
+> **Note**: the dataset is not versioned in this repository. Download it and place it in the `data/` folder as `data/abalone.csv`.
+
 
 ## 🚀 Quick Start
 
