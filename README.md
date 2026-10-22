@@ -58,6 +58,37 @@ Traditionally, determining an abalone's age requires:
    uv run pre-commit install
    ```
 
+## 🔁 Training pipeline with Prefect
+
+The training steps are Prefect tasks run by the flow in [src/modelling/flow.py](src/modelling/flow.py). The model is saved as a pickle in `src/web_service/local_objects/model.pkl`.
+
+All the commands below are run from the root of the repository.
+
+1. Download the dataset from [Kaggle](https://www.kaggle.com/datasets/rodolfomendes/abalone-dataset) and save it as `data/abalone.csv`.
+
+2. Start the Prefect server (keep this terminal open):
+   ```bash
+   uv run prefect config set PREFECT_API_URL=http://127.0.0.1:4200/api
+   uv run prefect server start
+   ```
+   The Prefect UI is available at http://127.0.0.1:4200.
+
+3. In another terminal, run the training flow:
+   ```bash
+   uv run python src/modelling/flow.py
+   ```
+
+4. To retrain the model every week (Sunday at midnight), start the deployment (keep this terminal open):
+   ```bash
+   uv run python src/modelling/deployment.py
+   ```
+   To launch a run right away:
+   ```bash
+   uv run prefect deployment run "train-model-flow/weekly-retraining"
+   ```
+
+The flow runs and their tasks can be seen in the Prefect UI.
+
 ## 📋 What You'll Build
 
 By the end of this project, you'll have created:
